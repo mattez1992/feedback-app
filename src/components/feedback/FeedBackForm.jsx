@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import Card from "../shared/Card";
 import Button from "../shared/Button";
 import RatingSelect from "./RatingSelect";
 import { v4 as uuid } from "uuid";
+import FeedbackContext  from "../context/feedback/FeedbackContext";
 const FeedBackForm = ({ handleAdd }) => {
+  const feedbackContext = useContext(FeedbackContext);
+  const {addFeedback} = feedbackContext;
   const [feedback, setFeedback] = useState({
     id: uuid(),
     rating: 1,
@@ -32,7 +35,8 @@ const FeedBackForm = ({ handleAdd }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    handleAdd(feedback);
+    // handleAdd(feedback);
+    addFeedback(feedback);
     setFeedback({
       id: uuid(),
       rating: 0,

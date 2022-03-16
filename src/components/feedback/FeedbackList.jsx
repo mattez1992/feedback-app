@@ -1,9 +1,12 @@
-import React from "react";
+import React,{useContext} from "react";
 import PropTypes from "prop-types";
 import FeedbackItem from "./FeedbackItem";
 import { motion, AnimatePresence } from "framer-motion";
+import FeedbackContext from "../context/feedback/FeedbackContext";
 
-const FeedbackList = ({ feedbacks, handleDelete }) => {
+const FeedbackList = ({ der, handleDelete }) => {
+  const feedbackContext = useContext(FeedbackContext);
+  const {feedbacks} = feedbackContext;
   if (feedbacks === null || feedbacks.length < 1) {
     return <p>No feedbacks made</p>;
   }
