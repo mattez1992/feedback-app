@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Card from "../shared/Card";
 import Button from "../shared/Button";
 import RatingSelect from "./RatingSelect";
+import { v4 as uuid } from "uuid";
 const FeedBackForm = ({ handleAdd }) => {
   const [feedback, setFeedback] = useState({
-    id: Math.floor(Math.random() * 1000),
-    rating: 0,
+    id: uuid(),
+    rating: 1,
     text: "",
   });
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -33,7 +34,7 @@ const FeedBackForm = ({ handleAdd }) => {
     e.preventDefault();
     handleAdd(feedback);
     setFeedback({
-      id: Math.floor(Math.random() * 1000),
+      id: uuid(),
       rating: 0,
       text: "",
     });
