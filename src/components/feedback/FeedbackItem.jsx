@@ -1,14 +1,20 @@
-import React from "react";
-import { FaTimes } from "react-icons/fa";
+import React,{useContext} from "react";
+import { FaTimes, FaEdit } from "react-icons/fa";
 import PropTypes from "prop-types";
 import Card from "../shared/Card";
+import FeedbackContext from "../context/feedback/FeedbackContext";
 
-const FeedbackItem = ({ feedback, handleDelete }) => {
+const FeedbackItem = ({ feedback, }) => {
+  const feedbackContext = useContext(FeedbackContext);
+  const {deleteFeedback, editFeedback} = feedbackContext;
   return (
     <Card>
       <div className="num-display">{feedback.rating}</div>
-      <button onClick={() => handleDelete(feedback.id)} className="close">
+      <button onClick={() => deleteFeedback(feedback.id)} className="close">
         <FaTimes color="purple" />
+      </button>
+      <button onClick={() =>editFeedback(feedback)} className="edit">
+        <FaEdit color="purple" />
       </button>
       <div className="text-display">{feedback.text}</div>
     </Card>
@@ -16,6 +22,5 @@ const FeedbackItem = ({ feedback, handleDelete }) => {
 };
 FeedbackItem.propTypes = {
   feedback: PropTypes.object.isRequired,
-  handleDelete: PropTypes.func.isRequired,
 };
 export default FeedbackItem;

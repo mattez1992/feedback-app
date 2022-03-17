@@ -6,7 +6,7 @@ import FeedbackContext from "../context/feedback/FeedbackContext";
 
 const FeedbackList = () => {
   const feedbackContext = useContext(FeedbackContext);
-  const {feedbacks,deleteFeedback} = feedbackContext;
+  const {feedbacks} = feedbackContext;
   if (feedbacks === null || feedbacks.length < 1) {
     return <p>No feedbacks made</p>;
   }
@@ -17,7 +17,6 @@ const FeedbackList = () => {
         <motion.div key={feedback.id} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
             <FeedbackItem
             feedback={feedback}
-            handleDelete={deleteFeedback}
             key={feedback.id}
             />
         </motion.div>       
