@@ -13,9 +13,17 @@ export const FeedbackProvider = ({ children }) => {
   const addFeedback = (newFeedback) => {
     setFeedbacks([newFeedback, ...feedbacks]);
   };
+  const deleteFeedback = (id) => {
+    console.log("Delete From App: " + id);
+    if (window.confirm("Do you want to delete?")) {
+      setFeedbacks(feedbacks.filter((f) => f.id !== id));
+    }
+  };
   // any values like state or functions that should be available to the children should be passed in to the value prop
   return (
-    <FeedbackContext.Provider value={{ feedbacks, addFeedback }}>
+    <FeedbackContext.Provider
+      value={{ feedbacks, addFeedback, deleteFeedback }}
+    >
       {children}
     </FeedbackContext.Provider>
   );
