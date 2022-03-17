@@ -2,13 +2,12 @@ import React, { useState,useContext,useEffect } from "react";
 import Card from "../shared/Card";
 import Button from "../shared/Button";
 import RatingSelect from "./RatingSelect";
-import { v4 as uuid } from "uuid";
 import FeedbackContext  from "../context/feedback/FeedbackContext";
 const FeedBackForm = ({ handleAdd }) => {
   const feedbackContext = useContext(FeedbackContext);
   const {addFeedback, updateFeedback,editState} = feedbackContext;
   const [feedback, setFeedback] = useState({
-    id: uuid(),
+    id: null,
     rating: 1,
     text: "",
   });
@@ -20,7 +19,7 @@ const FeedBackForm = ({ handleAdd }) => {
      setFeedback(editState.item)
      setBtnDisabled(false);
    }else{
-     setFeedback({ id: uuid(),
+     setFeedback({ id: null,
       rating: 1,
       text: "",})
    }
@@ -51,7 +50,7 @@ const FeedBackForm = ({ handleAdd }) => {
       addFeedback(feedback);
     }
     setFeedback({
-      id: uuid(),
+      id: null,
       rating: 0,
       text: "",
     });
